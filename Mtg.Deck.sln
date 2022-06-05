@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtg.Deck.Parser", "Mtg.Deck.Parser\Mtg.Deck.Parser.csproj", "{E9CF48A5-3FEE-410C-B44A-A6F09A4BFCE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtg.Deck.Database", "Mtg.Deck.Database\Mtg.Deck.Database.csproj", "{DADB5245-D1E2-4EF1-A51A-E064B9565F0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtg.Deck.Api", "Mtg.Deck.Api\Mtg.Deck.Api.csproj", "{7963D9DF-1970-467A-B04A-B229620EA225}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9CF48A5-3FEE-410C-B44A-A6F09A4BFCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9CF48A5-3FEE-410C-B44A-A6F09A4BFCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9CF48A5-3FEE-410C-B44A-A6F09A4BFCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9CF48A5-3FEE-410C-B44A-A6F09A4BFCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADB5245-D1E2-4EF1-A51A-E064B9565F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADB5245-D1E2-4EF1-A51A-E064B9565F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADB5245-D1E2-4EF1-A51A-E064B9565F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADB5245-D1E2-4EF1-A51A-E064B9565F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7963D9DF-1970-467A-B04A-B229620EA225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7963D9DF-1970-467A-B04A-B229620EA225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7963D9DF-1970-467A-B04A-B229620EA225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7963D9DF-1970-467A-B04A-B229620EA225}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F17D9A3-86DF-4981-8AC8-A5622558B33B}
+	EndGlobalSection
+EndGlobal
