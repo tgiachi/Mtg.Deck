@@ -9,6 +9,16 @@ namespace Mtg.Deck.Database.Context
         public DbSet<ColorEntity> Colors { get; set; }
         public DbSet<CardTypeEntity> CardTypes { get; set; }
 
+        public DeckDatabaseContext()
+        {
+
+        }
+
+        public DeckDatabaseContext(DbContextOptions options) : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"DataSource=cards.db;");

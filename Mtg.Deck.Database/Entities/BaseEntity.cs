@@ -9,7 +9,7 @@ using Mtg.Deck.Api.Interfaces.Db;
 
 namespace Mtg.Deck.Database.Entities
 {
-    public class BaseEntity : IBaseEntity
+    public class BaseEntity : IBaseEntity<Guid>
     {
 
         [Key]

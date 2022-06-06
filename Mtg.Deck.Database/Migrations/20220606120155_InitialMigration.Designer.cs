@@ -11,7 +11,7 @@ using Mtg.Deck.Database.Context;
 namespace Mtg.Deck.Database.Migrations
 {
     [DbContext(typeof(DeckDatabaseContext))]
-    [Migration("20220605170631_InitialMigration")]
+    [Migration("20220606120155_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace Mtg.Deck.Database.Migrations
 
                     b.HasIndex("CardTypeId");
 
-                    b.ToTable("Cards");
+                    b.ToTable("cards");
                 });
 
             modelBuilder.Entity("Mtg.Deck.Database.Entities.CardTypeEntity", b =>
@@ -81,7 +81,7 @@ namespace Mtg.Deck.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CardTypes");
+                    b.ToTable("card_types");
                 });
 
             modelBuilder.Entity("Mtg.Deck.Database.Entities.ColorEntity", b =>
@@ -102,7 +102,7 @@ namespace Mtg.Deck.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("colors");
                 });
 
             modelBuilder.Entity("CardEntityColorEntity", b =>

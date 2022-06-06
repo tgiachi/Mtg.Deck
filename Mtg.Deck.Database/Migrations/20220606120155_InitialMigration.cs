@@ -10,7 +10,7 @@ namespace Mtg.Deck.Database.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CardTypes",
+                name: "card_types",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -20,11 +20,11 @@ namespace Mtg.Deck.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CardTypes", x => x.Id);
+                    table.PrimaryKey("PK_card_types", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Colors",
+                name: "colors",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -34,11 +34,11 @@ namespace Mtg.Deck.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colors", x => x.Id);
+                    table.PrimaryKey("PK_colors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cards",
+                name: "cards",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -50,11 +50,11 @@ namespace Mtg.Deck.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cards", x => x.Id);
+                    table.PrimaryKey("PK_cards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cards_CardTypes_CardTypeId",
+                        name: "FK_cards_card_types_CardTypeId",
                         column: x => x.CardTypeId,
-                        principalTable: "CardTypes",
+                        principalTable: "card_types",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -70,15 +70,15 @@ namespace Mtg.Deck.Database.Migrations
                 {
                     table.PrimaryKey("PK_CardEntityColorEntity", x => new { x.CardsId, x.ColorsId });
                     table.ForeignKey(
-                        name: "FK_CardEntityColorEntity_Cards_CardsId",
+                        name: "FK_CardEntityColorEntity_cards_CardsId",
                         column: x => x.CardsId,
-                        principalTable: "Cards",
+                        principalTable: "cards",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CardEntityColorEntity_Colors_ColorsId",
+                        name: "FK_CardEntityColorEntity_colors_ColorsId",
                         column: x => x.ColorsId,
-                        principalTable: "Colors",
+                        principalTable: "colors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -89,8 +89,8 @@ namespace Mtg.Deck.Database.Migrations
                 column: "ColorsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cards_CardTypeId",
-                table: "Cards",
+                name: "IX_cards_CardTypeId",
+                table: "cards",
                 column: "CardTypeId");
         }
 
@@ -100,13 +100,13 @@ namespace Mtg.Deck.Database.Migrations
                 name: "CardEntityColorEntity");
 
             migrationBuilder.DropTable(
-                name: "Cards");
+                name: "cards");
 
             migrationBuilder.DropTable(
-                name: "Colors");
+                name: "colors");
 
             migrationBuilder.DropTable(
-                name: "CardTypes");
+                name: "card_types");
         }
     }
 }

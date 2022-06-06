@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Mtg.Deck.Api.Interfaces.Db
 {
-    public interface IBaseEntity
+    public interface IBaseEntity<TId>
     {
-        Guid Id { get; set; }
+        TId Id { get; set; }
 
         DateTime CreatedDateTime { get; set; }
         DateTime UpdatedDateTime { get; set; }
