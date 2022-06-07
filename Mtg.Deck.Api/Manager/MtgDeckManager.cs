@@ -14,12 +14,11 @@ namespace Mtg.Deck.Api.Manager
 {
     public class MtgDeckManager
     {
-        public IContainer Container { get => _container; }
-        private IContainer _container;
+
 
         private ContainerBuilder _containerBuilder;
 
-        public void Start()
+        public ContainerBuilder Start()
         {
             _containerBuilder = new ContainerBuilder();
             _containerBuilder = _containerBuilder.RegisterSerilog("./");
@@ -29,7 +28,7 @@ namespace Mtg.Deck.Api.Manager
                 _containerBuilder.RegisterModule(module);
             });
 
-            _container = _containerBuilder.Build();
+            return _containerBuilder;
         }
     }
 }

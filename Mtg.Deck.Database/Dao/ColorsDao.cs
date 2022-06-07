@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.Extensions.Logging;
 using Mtg.Deck.Database.Context;
 using Mtg.Deck.Database.Entities;
 using Mtg.Deck.Database.Impl.Dao;
@@ -14,9 +14,7 @@ namespace Mtg.Deck.Database.Dao
 {
     public class ColorsDao : AbstractDataAccess<Guid, ColorEntity, DeckDatabaseContext>
     {
-        public ColorsDao(DeckDatabaseContext dbContext, ILogger logger) : base(dbContext, logger)
-        {
-        }
+       
 
         public async Task<ColorEntity> AddIfNotExists(string color)
         {
@@ -26,9 +24,14 @@ namespace Mtg.Deck.Database.Dao
                 colorEntity = new ColorEntity() {
                     Name = color
                 };
+                await Insert(colorEntity);
             }
 
             return colorEntity;
+        }
+
+        public ColorsDao(IDbContextFactory<DeckDatabaseContext> dbContext, ILogger<ColorEntity> logger) : base(dbContext, logger)
+        {
         }
     }
 }

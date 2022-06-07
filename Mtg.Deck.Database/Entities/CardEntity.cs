@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mtg.Deck.Database.Entities
 {
@@ -13,10 +8,21 @@ namespace Mtg.Deck.Database.Entities
     {
         public string CardName { get; set; }
 
+        public string ManaCost { get; set; }
+
         public int TotalManaCosts { get; set; }
+
+        public int? MtgId { get; set; }
+
+        public decimal? Price { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public virtual List<ColorEntity> Colors { get; set; }
 
         public virtual CardTypeEntity CardType { get; set; }
+
     }
 }

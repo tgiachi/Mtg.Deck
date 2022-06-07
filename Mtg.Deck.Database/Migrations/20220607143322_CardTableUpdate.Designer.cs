@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mtg.Deck.Database.Context;
 
@@ -10,9 +11,10 @@ using Mtg.Deck.Database.Context;
 namespace Mtg.Deck.Database.Migrations
 {
     [DbContext(typeof(DeckDatabaseContext))]
-    partial class DeckDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220607143322_CardTableUpdate")]
+    partial class CardTableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -61,9 +63,6 @@ namespace Mtg.Deck.Database.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("TotalManaCosts")
                         .HasColumnType("INTEGER");

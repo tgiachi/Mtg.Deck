@@ -19,9 +19,9 @@ namespace Mtg.Deck.Database.Context
 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite(@"DataSource=cards.db;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite(@"DataSource=cards.db;");
+        //}
     }
 }
