@@ -9,6 +9,9 @@ namespace Mtg.Deck.Database.Context
         public DbSet<ColorEntity> Colors { get; set; }
         public DbSet<CardTypeEntity> CardTypes { get; set; }
 
+        public DbSet<RarityEntity> Rarities { get; set; }
+        public DbSet<ColorCardEntity> CardColors { get; set; }
+
         public DeckDatabaseContext()
         {
 
@@ -19,9 +22,9 @@ namespace Mtg.Deck.Database.Context
 
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlite(@"DataSource=cards.db;");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(@"DataSource=cards.db;");
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mtg.Deck.Database.Context;
 
@@ -10,9 +11,10 @@ using Mtg.Deck.Database.Context;
 namespace Mtg.Deck.Database.Migrations
 {
     [DbContext(typeof(DeckDatabaseContext))]
-    partial class DeckDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220611142123_ModifiedCardsColors")]
+    partial class ModifiedCardsColors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -50,9 +52,6 @@ namespace Mtg.Deck.Database.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("RarityId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("TotalManaCosts")
                         .HasColumnType("INTEGER");
 
@@ -62,8 +61,6 @@ namespace Mtg.Deck.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CardTypeId");
-
-                    b.HasIndex("RarityId");
 
                     b.ToTable("cards");
                 });
@@ -137,27 +134,6 @@ namespace Mtg.Deck.Database.Migrations
                     b.ToTable("colors");
                 });
 
-            modelBuilder.Entity("Mtg.Deck.Database.Entities.RarityEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedDateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedDateTime")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("rarity");
-                });
-
             modelBuilder.Entity("Mtg.Deck.Database.Entities.CardEntity", b =>
                 {
                     b.HasOne("Mtg.Deck.Database.Entities.CardTypeEntity", "CardType")
@@ -166,21 +142,13 @@ namespace Mtg.Deck.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mtg.Deck.Database.Entities.RarityEntity", "Rarity")
-                        .WithMany()
-                        .HasForeignKey("RarityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("CardType");
-
-                    b.Navigation("Rarity");
                 });
 
             modelBuilder.Entity("Mtg.Deck.Database.Entities.ColorCardEntity", b =>
                 {
                     b.HasOne("Mtg.Deck.Database.Entities.CardEntity", "Card")
-                        .WithMany("ColorCards")
+                        .WithMany()
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -194,11 +162,6 @@ namespace Mtg.Deck.Database.Migrations
                     b.Navigation("Card");
 
                     b.Navigation("Color");
-                });
-
-            modelBuilder.Entity("Mtg.Deck.Database.Entities.CardEntity", b =>
-                {
-                    b.Navigation("ColorCards");
                 });
 
             modelBuilder.Entity("Mtg.Deck.Database.Entities.CardTypeEntity", b =>

@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Mtg.Deck.Database.Entities
 {
-    [Table("colors")]
-    public class ColorEntity : BaseEntity
+
+    [Table("rarity")]
+    public class RarityEntity : BaseEntity
     {
         public string Name { get; set; }
-
-        public virtual List<ColorCardEntity> ColorCards { get; set; }
     }
 }

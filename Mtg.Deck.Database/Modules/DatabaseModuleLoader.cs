@@ -30,7 +30,8 @@ namespace Mtg.Deck.Database.Modules
             builder.RegisterType<ColorsDao>().AsSelf();
             builder.RegisterType<CardsDao>().AsSelf();
             builder.RegisterType<CardTypeDao>().AsSelf();
-
+            builder.RegisterType<ColorCardDao>().AsSelf();
+            builder.RegisterType<RarityDao>().AsSelf();
             base.Load(builder);
         }
     }

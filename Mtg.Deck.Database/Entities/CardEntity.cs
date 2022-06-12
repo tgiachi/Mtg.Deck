@@ -20,9 +20,14 @@ namespace Mtg.Deck.Database.Entities
 
         public string ImageUrl { get; set; }
 
-        public virtual List<ColorEntity> Colors { get; set; }
+        public virtual List<ColorCardEntity> ColorCards { get; set; }
 
+        public Guid CardTypeId { get; set; }
         public virtual CardTypeEntity CardType { get; set; }
+
+        public Guid RarityId { get; set; }
+
+        public virtual RarityEntity Rarity { get; set; }
 
     }
 }

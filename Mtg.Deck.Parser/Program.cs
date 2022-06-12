@@ -64,6 +64,8 @@ namespace Mtg.Deck.Parser // Note: actual namespace depends on the project name.
             await AddColors(cards);
             Console.WriteLine("Adding card types");
             await AddCardType(cards);
+            Console.WriteLine("Adding rarities");
+            await AddRarities(cards);
             Console.WriteLine("Adding cards");
             await AddCards(cards);
             Console.ReadKey();
@@ -146,12 +148,26 @@ namespace Mtg.Deck.Parser // Note: actual namespace depends on the project name.
             }
         }
 
+        public static async Task AddRarities(List<Card> cards)
+        {
+            var rarityDao = _serviceProvider.GetService<RarityDao>();
+
+            var types = cards.DistinctBy(s => s.Rarity).DistinctBy(s => s).Select(s => s.Rarity).ToList();
+
+            foreach (var type in types)
+            {
+                await rarityDao.AddCardTypeIfNotExists(type);
+            }
+        }
+
         public static async Task AddCards(List<Card> cards)
         {
 
             var cardDao = _serviceProvider.GetService<CardsDao>();
             var colorsDao = _serviceProvider.GetService<ColorsDao>();
             var cardTypeDao = _serviceProvider.GetService<CardTypeDao>();
+            var colorsCardDao = _serviceProvider.GetService<ColorCardDao>();
+            var rarityDao = _serviceProvider.GetService<RarityDao>();
 
 
 
@@ -176,18 +192,28 @@ namespace Mtg.Deck.Parser // Note: actual namespace depends on the project name.
                     }
 
                     var cardType = await cardTypeDao.QueryAsSingle(entities => entities.Where(s => s.CardType == type));
+                    var rarity = await rarityDao.QueryAsSingle(entities => entities.Where(s => s.Name == card.Rarity));
 
-                    await cardDao.Insert(new CardEntity() {
+                   var cardEntity = await cardDao.Insert(new CardEntity() {
                         CardName = card.Name,
-                        Colors = colors,
-                        CardType = cardType,
+                       // Colors = colors,
+                        CardTypeId = cardType.Id,
                         ManaCost = card.ManaCost,
                         TotalManaCosts = mana,
                         Quantity = 1,
                         ImageUrl = card.ImageUris["small"].ToString(),
                         Price = card.Prices.Eur,
                         MtgId = card.MtgoId,
+                        RarityId = rarity.Id
                     });
+
+                    foreach (var color in colors)
+                    {
+                        await colorsCardDao.Insert(new ColorCardEntity() {
+                            CardId = cardEntity.Id,
+                            ColorId = color.Id,
+                        });
+                    }
                 }
             }
         }
